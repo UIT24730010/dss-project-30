@@ -1,0 +1,268 @@
+/* ================= Reset & biến màu ================= */
+:root {
+  --green: #16a34a;
+  --green-dark: #15803d;
+  --green-light: #dcfce7;
+  --ink: #1e293b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --gold: #f59e0b;
+  --silver: #94a3b8;
+  --bronze: #d97706;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Thuộc tính hidden luôn thắng mọi display (flex/grid/block...) */
+[hidden] { display: none !important; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+/* ================= Header ================= */
+.site-header {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: #fff;
+  padding: 22px 0;
+  box-shadow: var(--shadow);
+}
+.header-inner { display: flex; align-items: center; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-logo { font-size: 40px; line-height: 1; }
+.site-header h1 { font-size: 24px; font-weight: 700; }
+.tagline { font-size: 13.5px; opacity: 0.92; margin-top: 2px; }
+
+/* ================= Layout ================= */
+.main-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 40px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.panel h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--green-dark);
+}
+.results-panel { min-height: 480px; }
+
+/* ================= Form ================= */
+.field { margin-bottom: 16px; }
+.field-row { display: flex; gap: 12px; }
+.field-row .field { flex: 1; }
+.field label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.field input[type="date"],
+.field select {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 14px;
+  background: #fff;
+  color: var(--ink);
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.divider { border: none; border-top: 1px solid var(--line); margin: 20px 0 18px; }
+.hint { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+
+/* ---- Weight sliders ---- */
+.weight-item { margin-bottom: 12px; }
+.weight-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13.5px;
+  margin-bottom: 4px;
+}
+.weight-head .w-label { font-weight: 600; }
+.weight-head .w-val {
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-light);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12.5px;
+}
+.weight-total {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 16px;
+  padding: 8px 10px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+/* ---- Presets ---- */
+.preset-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 18px; }
+.chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.chip:hover { border-color: var(--green); color: var(--green-dark); }
+.chip.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+/* ---- Buttons ---- */
+.btn-primary {
+  width: 100%;
+  border: none;
+  background: var(--green);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: var(--green-dark); }
+
+/* ================= Results ================= */
+.result-meta { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+.empty-state {
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---- Podium (top 3) ---- */
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+@media (max-width: 560px) { .podium { grid-template-columns: 1fr; } }
+.podium-card {
+  border-radius: var(--radius);
+  padding: 16px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.podium-card.p1 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.podium-card.p2 { background: linear-gradient(135deg, #94a3b8, #64748b); }
+.podium-card.p3 { background: linear-gradient(135deg, #d97706, #b45309); }
+.podium-medal { font-size: 26px; }
+.podium-name { font-weight: 700; font-size: 15px; margin: 4px 0 2px; }
+.podium-score { font-size: 13px; opacity: 0.95; }
+.podium-bar { height: 6px; background: rgba(255,255,255,.35); border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.podium-bar > span { display: block; height: 100%; background: #fff; }
+
+/* ---- Result rows ---- */
+.results-list { display: flex; flex-direction: column; gap: 10px; }
+.result-card {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.result-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.rank-badge {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-weight: 800;
+  background: var(--bg);
+  color: var(--muted);
+}
+.result-card.top .rank-badge { background: var(--green); color: #fff; }
+.court-name { font-weight: 700; font-size: 15px; }
+.court-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.court-tags { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-size: 11px;
+  background: var(--bg);
+  color: var(--muted);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.tag.good { background: var(--green-light); color: var(--green-dark); }
+.score-box { text-align: right; }
+.score-num { font-size: 20px; font-weight: 800; color: var(--green-dark); }
+.score-label { font-size: 11px; color: var(--muted); }
+.card-actions { grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 4px; }
+.link-btn {
+  font-size: 12.5px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #fff;
+  cursor: pointer;
+}
+.link-btn.primary { background: var(--green); color: #fff; border-color: var(--green); }
+.link-btn:hover { border-color: var(--green); }
+
+/* ================= Modal ================= */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; z-index: 50;
+}
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius);
+  max-width: 620px; width: 100%;
+  max-height: 85vh; overflow-y: auto;
+  padding: 26px;
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  border: none; background: var(--bg);
+  width: 32px; height: 32px; border-radius: 50%;
+  cursor: pointer; font-size: 15px; color: var(--muted);
+}
+.modal-close:hover { background: var(--line); }
+.modal-box h3 { color: var(--green-dark); margin-bottom: 4px; }
+.modal-box table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+.modal-box th, .modal-box td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; }
+.modal-box th { color: var(--muted); font-weight: 600; }
+.modal-box td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.formula { background: var(--bg); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; margin-top: 14px; color: var(--ink); }
+
+/* ================= Footer ================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: #fff;
+  padding: 22px 0;
+  margin-top: 10px;
+}
+.site-footer p { font-size: 13px; color: var(--muted); }
+.site-footer .hint { margin-top: 4px; }
